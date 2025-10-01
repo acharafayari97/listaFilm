@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Film Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 th:text="${film.id == null} ? 'Nuovo Film' : 'Modifica Film'"></h1>
+
+<form th:action="${film.id == null} ? @{/film} : @{/film/{id}(id=${film.id})}" method="post">
+    <label for="titolo">Titolo:</label>
+    <input type="text" id="titolo" name="titolo" th:value="${film.titolo}" required>
+
+    <label for="regista">Regista:</label>
+    <input type="text" id="regista" name="regista" th:value="${film.regista}" required>
+
+    <label for="anno">Anno:</label>
+    <input type="number" id="anno" name="anno" th:value="${film.anno}" required>
+
+    <label for="voto">Voto:</label>
+    <input type="number" id="voto" name="voto" step="0.1" min="0" max="10" th:value="${film.voto}" required>
+
+    <button type="submit" class="btn">💾 Salva</button>
+    <a href="/film" class="btn">⬅️ Torna alla lista</a>
+</form>
+</body>
+</html>
