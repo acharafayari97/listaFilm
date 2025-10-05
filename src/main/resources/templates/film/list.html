@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Film</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista Film</h1>
+
+<a href="/film/new" class="btn">➕ Aggiungi nuovo film</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titolo</th>
+        <th>Regista</th>
+        <th>Anno</th>
+        <th>Voto</th>
+        <th>Azioni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="film : ${films}">
+        <td th:text="${film.id}"></td>
+        <td th:text="${film.titolo}"></td>
+        <td th:text="${film.regista}"></td>
+        <td th:text="${film.anno}"></td>
+        <td th:text="${film.voto}"></td>
+        <td>
+            <a th:href="@{|/film/${film.id}/edit|}" class="btn">✏️ Modifica</a>
+            <form th:action="@{|/film/${film.id}/delete|}" method="post" style="display:inline;">
+                <button type="submit" class="btn delete">🗑️ Elimina</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
